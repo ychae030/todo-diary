@@ -1,0 +1,52 @@
+{
+  "todos": {
+    "2023-08-30": {
+      "date": "2023-08-30",
+      "items": [
+        {
+          "id": "todo1",
+          "text": "리팩토링 하기",
+          "status": "active",
+          "createdAt": "2023-08-30T09:00:00Z"
+        },
+        {
+          "id": "todo2",
+          "text": "회의 준비하기",
+          "status": "completed",
+          "createdAt": "2023-08-30T10:00:00Z"
+        }
+      ]
+    },
+    "2023-08-31": {
+      "date": "2023-08-31",
+      "items": [
+        {
+          "id": "todo3",
+          "text": "프로젝트 계획 세우기",
+          "status": "active",
+          "createdAt": "2023-08-31T09:30:00Z"
+        }
+      ]
+    }
+  },
+  "diary": {
+    "diary1": {
+      "date": "2023-08-30",
+      "title": "Today at the Park",
+      "content": "Went for a walk in the park and it was very refreshing.",
+      "mood": "Happy",
+      "tags": ["Walk", "Nature"],
+      "createdAt": "2023-08-30T21:00:00Z",
+      "updatedAt": "2023-08-30T21:00:00Z"
+    },
+    "diary2": {
+      "date": "2023-08-31",
+      "title": "Learning Firebase",
+      "content": "Spent the day learning about Firebase and Firestore.",
+      "mood": "Productive",
+      "tags": ["Coding", "Learning"],
+      "createdAt": "2023-08-31T21:00:00Z",
+      "updatedAt": "2023-08-31T21:00:00Z"
+    }
+  }
+}
