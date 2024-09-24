@@ -1,3 +1,19 @@
+@import url("font.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-LeeSeoyun text-slate-700 w-4/5 mx-auto bg-background;
+  }
+  h1,
+  nav {
+    @apply font-LOTTERIACHAB;
+  }
+  h1,
+  nav li.active {
+    @apply text-brand dark:text-brandDark;
+  }
+}
