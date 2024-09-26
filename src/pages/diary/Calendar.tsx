@@ -4,7 +4,7 @@ import CalendarWeeks from "../../components/calendar/calendarBody/CalendarWeeks"
 import TodayButton from "../../components/calendar/calendarButtons/TodayButton";
 import { useCalendar } from "../../hooks/useCalendar";
 import ListButton from "../../components/calendar/calendarButtons/ListButton";
-import DiaryCreateButton from "../../components/calendar/calendarButtons/DiaryCreateButton";
+import CreateButton from "../../components/common/ui/CreateButton";
 
 export default function Calendar() {
   const {
@@ -46,7 +46,7 @@ export default function Calendar() {
           goToday={goToday}
         />
       </div>
-      <DiaryCreateButton />
+      <CreateButton />
     </>
   );
 }
