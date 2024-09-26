@@ -42,7 +42,7 @@ export default function CalendarControls({
           </button>
         </div>
       </div>
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <Modal isOpen={isOpen} closeModal={closeModal}>
         <MonthModal
           currentYear={currentYear}
           currentMonth={currentMonth}

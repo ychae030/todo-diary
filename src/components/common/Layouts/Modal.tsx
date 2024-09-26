@@ -1,15 +1,24 @@
 export type ModalProps = {
+  position?: "center" | "bottom";
   isOpen: boolean;
-  onClose: () => void;
+  closeModal: () => void;
   children: React.ReactNode;
 };
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export default function Modal({
+  position = "center",
+  isOpen,
+  closeModal,
+  children,
+}: ModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="modalWrap" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+    <div className="modalWrap" onClick={closeModal}>
+      <div
+        className={position === "center" ? "modal" : "modalBottom"}
+        onClick={(e) => e.stopPropagation()}
+      >
         {children}
       </div>
     </div>
