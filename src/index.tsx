@@ -4,10 +4,10 @@ import "./styles/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import NotFound from "./pages/NotFound";
-import TodoList from "./pages/todo/TodoList";
 import Calendar from "./pages/diary/Calendar";
 import Layout from "./components/common/Layouts/Layout";
 import MainHeader from "./components/common/header/MainHeader";
+import Todo from "./pages/todo/Todo";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: (
           <Layout
             header={{ header: <MainHeader /> }}
-            content={{ children: <TodoList /> }}
+            content={{ children: <Todo /> }}
           />
         ),
       },
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: (
           <Layout
             header={{ header: <MainHeader /> }}
-            content={{ children: <TodoList /> }}
+            content={{ children: <Todo /> }}
           />
         ),
       },
