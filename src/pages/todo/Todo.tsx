@@ -1,3 +1,4 @@
+import PendingTaskBox from "../../components/todo/PendingTaskBox";
 import { TodoItemType } from "../../components/todo/TodoItem";
 import TodoList from "../../components/todo/TodoList";
 
@@ -8,6 +9,7 @@ export default function Todo() {
 
   return (
     <div>
+      <PendingTaskBox data={todoData} />
       <TodoList data={todoData} />
     </div>
   );
@@ -19,8 +21,8 @@ export type TodoType = {
 
 type TodoDataType = Record<string, TodoType>;
 const data: TodoDataType = {
-  "2023.8.30": {
-    date: "2023.8.30",
+  "2024.8.30": {
+    date: "2024.8.30",
     items: [
       {
         id: "todo1",

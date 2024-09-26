@@ -8,6 +8,8 @@ import Calendar from "./pages/diary/Calendar";
 import Layout from "./components/common/Layouts/Layout";
 import MainHeader from "./components/common/header/MainHeader";
 import Todo from "./pages/todo/Todo";
+import BackButton from "./components/common/header/BackButton";
+import PendingTask from "./pages/todo/PendingTask";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,15 @@ const router = createBrowserRouter([
           <Layout
             header={{ header: <MainHeader /> }}
             content={{ children: <Todo /> }}
+          />
+        ),
+      },
+      {
+        path: "todo/pending",
+        element: (
+          <Layout
+            header={{ header: <BackButton /> }}
+            content={{ children: <PendingTask /> }}
           />
         ),
       },
