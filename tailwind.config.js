@@ -12,6 +12,7 @@ module.exports = {
         brandDark: "#dbe2ef",
         danger: "#e76c6c",
         dangerDark: "#dbe2ef",
+        shadow: "rgba(0, 0, 0, 0.5)",
       },
     },
     fontFamily: {
