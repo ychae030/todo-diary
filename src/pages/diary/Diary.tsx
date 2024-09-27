@@ -1,5 +1,5 @@
 import React from "react";
-import ListButton from "../../components/common/calendar/calendarButtons/ListButton";
+import ListButton from "../../components/Diary/calendar/ListButton";
 import CreateButton from "../../components/common/ui/CreateButton";
 import Calendar from "../../components/common/calendar/Calendar";
 import { CalendarProvider } from "../../context/CalendarContext";
