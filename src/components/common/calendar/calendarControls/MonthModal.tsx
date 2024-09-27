@@ -5,9 +5,8 @@ export type MonthModalProps = {
   currentMonth: string;
   goToNextYear: () => void;
   goToPrevYear: () => void;
-
   goToMonth: (month: number) => void;
-  onClose: () => void;
+  closeModal: () => void;
 };
 export default function MonthModal({
   currentYear,
@@ -15,12 +14,12 @@ export default function MonthModal({
   goToNextYear,
   goToPrevYear,
   goToMonth,
-  onClose,
+  closeModal,
 }: MonthModalProps) {
   const month = Array(12).fill("");
   const handleMonth = (month: number) => {
     goToMonth(month);
-    onClose();
+    closeModal();
   };
   return (
     <>
