@@ -46,7 +46,7 @@ export default function Calendar() {
           goToday={goToday}
         />
       </div>
-      <CreateButton />
+      <CreateButton feat="diary" />
     </>
   );
 }

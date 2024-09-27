@@ -1,8 +1,20 @@
 import { BsFillPatchPlusFill } from "react-icons/bs";
-export default function CreateButton() {
+type CreateButtonType = {
+  feat: "todo" | "diary";
+  openModal?: () => void;
+};
+export default function CreateButton({
+  feat = "todo",
+  openModal,
+}: CreateButtonType) {
+  const handleButton = () => {
+    if (feat === "todo") {
+      openModal && openModal();
+    }
+  };
   return (
     <span className="fixed w-full flex left-0 bottom-10 justify-center">
-      <button className="text-brand text-4xl">
+      <button onClick={handleButton} className="text-brand text-4xl">
         <BsFillPatchPlusFill />
       </button>
     </span>

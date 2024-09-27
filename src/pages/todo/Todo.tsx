@@ -1,8 +1,13 @@
+import Modal from "../../components/common/Layouts/Modal";
+import CreateButton from "../../components/common/ui/CreateButton";
 import PendingTaskBox from "../../components/todo/PendingTaskBox";
+import TodoInputForm from "../../components/todo/TodoInputForm";
 import { TodoItemType } from "../../components/todo/TodoItem";
 import TodoList from "../../components/todo/TodoList";
+import useModal from "../../hooks/useModal";
 
 export default function Todo() {
+  const { isOpen, openModal, closeModal } = useModal();
   const todoData: TodoType[] = Object.entries(data).flatMap(
     ([_, value]) => value
   );
@@ -11,6 +16,12 @@ export default function Todo() {
     <div>
       <PendingTaskBox data={todoData} />
       <TodoList data={todoData} />
+      <CreateButton feat="todo" openModal={openModal} />
+      {isOpen && (
+        <Modal position={"bottom"} isOpen={isOpen} closeModal={closeModal}>
+          <TodoInputForm />
+        </Modal>
+      )}
     </div>
   );
 }
