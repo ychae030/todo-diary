@@ -4,12 +4,12 @@ import "./styles/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import NotFound from "./pages/NotFound";
-import Calendar from "./pages/diary/Calendar";
 import Layout from "./components/common/Layouts/Layout";
 import MainHeader from "./components/common/header/MainHeader";
 import Todo from "./pages/todo/Todo";
 import BackButton from "./components/common/header/BackButton";
 import PendingTask from "./pages/todo/PendingTask";
+import Diary from "./pages/diary/Diary";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: (
           <Layout
             header={{ header: <MainHeader /> }}
-            content={{ children: <Calendar /> }}
+            content={{ children: <Diary /> }}
           />
         ),
       },

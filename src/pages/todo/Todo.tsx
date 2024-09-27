@@ -4,6 +4,7 @@ import PendingTaskBox from "../../components/todo/PendingTaskBox";
 import TodoInputForm from "../../components/todo/TodoInputForm";
 import { TodoItemType } from "../../components/todo/TodoItem";
 import TodoList from "../../components/todo/TodoList";
+import { CalendarProvider } from "../../context/CalendarContext";
 import useModal from "../../hooks/useModal";
 
 export default function Todo() {
@@ -19,7 +20,9 @@ export default function Todo() {
       <CreateButton feat="todo" openModal={openModal} />
       {isOpen && (
         <Modal position={"bottom"} isOpen={isOpen} closeModal={closeModal}>
-          <TodoInputForm />
+          <CalendarProvider mode="todo">
+            <TodoInputForm />
+          </CalendarProvider>
         </Modal>
       )}
     </div>
@@ -39,11 +42,13 @@ const data: TodoDataType = {
         id: "todo1",
         text: "리팩토링 하기",
         status: "active",
+        createdAt: "string",
       },
       {
         id: "todo2",
         text: "회의 준비하기",
         status: "completed",
+        createdAt: "string",
       },
     ],
   },
@@ -54,6 +59,7 @@ const data: TodoDataType = {
         id: "todo3",
         text: "프로젝트 계획 세우기",
         status: "active",
+        createdAt: "string",
       },
     ],
   },
