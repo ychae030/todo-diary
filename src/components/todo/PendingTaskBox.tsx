@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { GrFormNext } from "react-icons/gr";
 import { useCalendar } from "../../hooks/useCalendar";
 import { useQuery } from "react-query";
-import { getPendingTodos } from "../../api/getTodos";
+import { getPendingTodos } from "../../api/todoApi";
 
 export default function PendingTaskBox() {
   const navigate = useNavigate();

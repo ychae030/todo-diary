@@ -1,7 +1,7 @@
 import TodoSection from "./TodoSection";
 import { useQuery } from "react-query";
 import { useCalendar } from "../../hooks/useCalendar";
-import { getFutureTodos } from "../../api/getTodos";
+import { getFutureTodos } from "../../api/todoApi";
 
 export default function TodoList() {
   const { today } = useCalendar();

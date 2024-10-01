@@ -4,6 +4,7 @@ import { useCalendar } from "../hooks/useCalendar";
 // Context 타입 정의
 type CalendarContextType = {
   selectedDate: string;
+  setSelectedDate: (date: string) => void;
   handleDateClick: (date: string) => void;
   disablePastDates: boolean;
   showIcons: boolean;
@@ -37,6 +38,7 @@ export const CalendarProvider = ({ children, mode }: CalendarProviderType) => {
     <CalendarContext.Provider
       value={{
         selectedDate,
+        setSelectedDate,
         handleDateClick,
         disablePastDates: mode === "todo",
         showIcons: mode === "diary",
