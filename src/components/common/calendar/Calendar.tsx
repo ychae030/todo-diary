@@ -2,7 +2,7 @@ import { useCalendarContext } from "../../../context/CalendarContext";
 import { useCalendar } from "../../../hooks/useCalendar";
 import CalendarBody from "./calendarBody/CalendarBody";
 import CalendarWeeks from "./calendarBody/CalendarWeeks";
-import TodayButton from "../../Diary/calendar/TodayButton";
+import TodayButton from "../../diary/calendar/TodayButton";
 import CalendarControls from "./calendarControls/CalendarControls";
 
 export default function Calendar() {
