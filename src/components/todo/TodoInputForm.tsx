@@ -9,6 +9,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Status } from "./TodoItem";
 import { addTodo } from "../../api/addTodo";
+import { useQueryClient } from "react-query";
 
 type TodoInputFormProps = { closeForm: () => void };
 export default function TodoInputForm({ closeForm }: TodoInputFormProps) {
@@ -17,7 +18,7 @@ export default function TodoInputForm({ closeForm }: TodoInputFormProps) {
   const { isOpen, closeModal, openModal } = useModal();
   const [text, setText] = useState("");
   const date = selectedDate === today ? "오늘" : selectedDate;
-
+  const queryClient = useQueryClient();
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
@@ -29,6 +30,7 @@ export default function TodoInputForm({ closeForm }: TodoInputFormProps) {
       createdAt: new Date().toISOString(),
     };
     addTodo(item, today);
+    queryClient.invalidateQueries("todos");
     closeForm();
   };
 
