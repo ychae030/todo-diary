@@ -6,5 +6,5 @@ export default function PendingTask() {
   const location = useLocation();
   const { data } = location.state as { data: TodoItemType[] };
 
-  return <TodoSection data={data} />;
+  return <TodoSection data={data} mode="pending" />;
 }
