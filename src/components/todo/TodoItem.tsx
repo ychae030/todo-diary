@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 
+export type Status = "active" | "completed";
 export type TodoItemType = {
   id: string;
   text: string;
-  status: "active" | "completed";
+  status: Status;
+  createdAt?: string;
+  date?: string;
 };
 export default function TodoItem({ id, text, status }: TodoItemType) {
   const [isChecked, setIsChecked] = useState<boolean>(status === "completed");
@@ -12,7 +15,7 @@ export default function TodoItem({ id, text, status }: TodoItemType) {
     setIsChecked((prev) => !prev);
   };
   return (
-    <li>
+    <div>
       <input
         type="checkbox"
         id={id}
@@ -33,6 +36,6 @@ export default function TodoItem({ id, text, status }: TodoItemType) {
         </span>
         <strong className="font-normal">{text}</strong>
       </label>
-    </li>
+    </div>
   );
 }

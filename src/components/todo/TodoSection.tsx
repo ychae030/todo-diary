@@ -1,18 +1,30 @@
-import TodoItem, { TodoItemType } from "./TodoItem";
+import TodoItem from "./TodoItem";
 
-type TodoSectionType = {
-  date: string;
-  items: TodoItemType[];
+type Status = "active" | "completed";
+type TodoItemType = {
+  id: string;
+  text: string;
+  status: Status;
+  createdAt?: string;
+  date?: string;
 };
-export default function TodoSection({ date, items }: TodoSectionType) {
+type TodoSectionProps = {
+  data?: TodoItemType[];
+};
+export default function TodoSection({ data }: TodoSectionProps) {
+  let lastDate: string | undefined = "";
   return (
-    <div key={date} className="mt-4">
-      <h3 className="mb-2 text-brand">{date}</h3>
-      <ul>
-        {items.map(({ id, text, status }) => (
-          <TodoItem key={id} id={id} text={text} status={status} />
-        ))}
-      </ul>
-    </div>
+    <section>
+      {data?.map((item) => {
+        const showDate = lastDate !== item.date;
+        lastDate = item.date;
+        return (
+          <div key={item.id}>
+            {showDate && <h3 className="mb-2 text-brand">{item.date}</h3>}
+            <TodoItem id={item.id} text={item.text} status={item.status} />
+          </div>
+        );
+      })}
+    </section>
   );
 }

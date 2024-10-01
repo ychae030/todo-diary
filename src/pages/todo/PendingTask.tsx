@@ -1,16 +1,10 @@
 import { useLocation } from "react-router-dom";
 import TodoSection from "../../components/todo/TodoSection";
-import { TodoType } from "./Todo";
+import { TodoItemType } from "../../components/todo/TodoItem";
 
 export default function PendingTask() {
   const location = useLocation();
-  const { pendingData } = location.state as { pendingData: TodoType[] };
+  const { data } = location.state as { data: TodoItemType[] };
 
-  return (
-    <div>
-      {pendingData.map(({ date, items }) => (
-        <TodoSection date={date} items={items} />
-      ))}
-    </div>
-  );
+  return <TodoSection data={data} />;
 }
