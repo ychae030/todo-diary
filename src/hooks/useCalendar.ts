@@ -16,7 +16,7 @@ import {
 
 import { useState } from "react";
 
-const dateFormat = "yyyy.M.d";
+const dateFormat = "yyyy.MM.dd";
 export type Days = {
   year: string;
   month: string;

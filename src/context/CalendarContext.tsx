@@ -3,7 +3,7 @@ import { useCalendar } from "../hooks/useCalendar";
 
 // Context 타입 정의
 type CalendarContextType = {
-  selectedDate: string | null;
+  selectedDate: string;
   handleDateClick: (date: string) => void;
   disablePastDates: boolean;
   showIcons: boolean;
@@ -23,7 +23,7 @@ export const CalendarContext = createContext<CalendarContextType | undefined>(
 // Provider 컴포넌트 정의
 export const CalendarProvider = ({ children, mode }: CalendarProviderType) => {
   const { today } = useCalendar();
-  const [selectedDate, setSelectedDate] = useState<string | null>(today);
+  const [selectedDate, setSelectedDate] = useState<string>(today);
 
   // 날짜 클릭 핸들러 정의
   const handleDateClick = (date: string) => {
