@@ -5,27 +5,24 @@ import useModal from "../../hooks/useModal";
 import { useCalendarContext } from "../../context/CalendarContext";
 import Calendar from "../common/calendar/Calendar";
 import { useCalendar } from "../../hooks/useCalendar";
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Status } from "./TodoItem";
 import { addTodo } from "../../api/addTodo";
 import { useQueryClient } from "react-query";
+import useInput from "../../hooks/useInput";
 
 type TodoInputFormProps = { closeForm: () => void };
 export default function TodoInputForm({ closeForm }: TodoInputFormProps) {
   const { selectedDate } = useCalendarContext();
   const { today } = useCalendar();
   const { isOpen, closeModal, openModal } = useModal();
-  const [text, setText] = useState("");
   const date = selectedDate === today ? "오늘" : selectedDate;
   const queryClient = useQueryClient();
-  const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
+  const { bind, setValue, reset } = useInput("");
   const handleForm = () => {
     const item = {
       id: uuidv4(),
-      text,
+      text: bind.value,
       status: "active" as Status,
       createdAt: new Date().toISOString(),
     };
@@ -37,8 +34,7 @@ export default function TodoInputForm({ closeForm }: TodoInputFormProps) {
   return (
     <div className="w-11/12 mx-auto">
       <input
-        onChange={handleText}
-        value={text}
+        {...bind}
         className="w-full border-b outline-none  border-brand"
         type="text"
       />
