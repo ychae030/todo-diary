@@ -1,19 +1,28 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type Entry = "TODO" | "DIARY";
 const navList: Entry[] = ["TODO", "DIARY"];
 
 export default function MainHeader() {
-  const [entry, setEntry] = useState<Entry>("TODO");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const entryFromUrl = location.pathname.split("/")[1].toUpperCase() as Entry;
+  const [entry, setEntry] = useState<Entry>(entryFromUrl || "TODO");
 
   const handleNav = (list: Entry) => {
     setEntry(list);
     navigate(`/${list.toLocaleLowerCase()}`);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const newEntry = location.pathname.split("/")[1]?.toUpperCase() as Entry;
+    if (newEntry && newEntry !== entry) {
+      setEntry(newEntry); // 경로 변경 시 entry 상태 업데이트
+    }
+  }, [location.pathname, entry]);
 
   return (
     <>
@@ -25,7 +34,10 @@ export default function MainHeader() {
           <nav className="absolute w-24 py-2 text-center rounded-sm bg-white">
             <ul>
               {navList.map((list) => (
-                <li className={list === entry ? "active" : "text-blue-100"}>
+                <li
+                  key={list}
+                  className={list === entry ? "active" : "text-blue-100"}
+                >
                   <button onClick={() => handleNav(list)}>{list}</button>
                 </li>
               ))}
