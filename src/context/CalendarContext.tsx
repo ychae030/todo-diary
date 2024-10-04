@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { useCalendar } from "../hooks/useCalendar";
+import { useNavigate } from "react-router-dom";
 
 // Context 타입 정의
 type CalendarContextType = {
@@ -25,12 +26,13 @@ export const CalendarContext = createContext<CalendarContextType | undefined>(
 export const CalendarProvider = ({ children, mode }: CalendarProviderType) => {
   const { today } = useCalendar();
   const [selectedDate, setSelectedDate] = useState<string>(today);
+  const navigate = useNavigate();
 
   // 날짜 클릭 핸들러 정의
   const handleDateClick = (date: string) => {
+    setSelectedDate(date);
     if (mode === "diary") {
-    } else {
-      setSelectedDate(date);
+      navigate("/diary/create", { state: date });
     }
   };
 

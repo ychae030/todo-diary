@@ -1,7 +1,7 @@
 export type ModalProps = {
   position?: "center" | "bottom";
   isOpen: boolean;
-  closeModal: () => void;
+  closeModal?: () => void;
   children: React.ReactNode;
 };
 
