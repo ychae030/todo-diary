@@ -31,7 +31,7 @@ export const useCalendar = () => {
 
   // 오늘 날짜 포맷팅
   const today = format(new Date(), dateFormat);
-  // 현재 연, 월, 요일
+  // 현재 연, 월
   const currentYear = currentDate.getFullYear();
   const currentMonth = String(currentDate.getMonth() + 1);
 
@@ -60,8 +60,8 @@ export const useCalendar = () => {
       const formattedDay = {
         date: format(day, dateFormat),
         year: format(day, "yyyy"),
-        month: format(day, "MM"),
-        day: format(day, "dd"),
+        month: format(day, "M"),
+        day: format(day, "d"),
         isWeekend: isWeekend(day),
         isToday: isToday(day),
       };
