@@ -28,12 +28,12 @@ function useInput<
         setValue(updatedValue);
 
         // 삽입 후 커서 위치 이동
-        // setTimeout(() => {
-        //   element.setSelectionRange(
-        //     startPos + text.length,
-        //     startPos + text.length
-        //   );
-        // }, 0);
+        setTimeout(() => {
+          element.setSelectionRange(
+            startPos + text.length,
+            startPos + text.length
+          );
+        }, 0);
       }
     },
     [value]
