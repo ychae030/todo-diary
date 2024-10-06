@@ -1,18 +1,21 @@
-import React, { useState } from "react";
 import Modal from "../../common/Layouts/Modal";
 import { emoji, Mood, moods } from "../../../images/emoji";
-import useModal from "../../../hooks/useModal";
 
 type MoodsModalProps = {
   mood: Mood;
   handleMood: (mood: Mood) => void;
+  isMoodOpen: boolean;
+  closeMoodModal: () => void;
 };
 
-export default function MoodsModal({ mood, handleMood }: MoodsModalProps) {
-  const { isOpen, closeModal } = useModal(true);
-
+export default function MoodsModal({
+  mood,
+  handleMood,
+  isMoodOpen,
+  closeMoodModal,
+}: MoodsModalProps) {
   return (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isMoodOpen}>
       <div className="p-2">
         <p className="text-center mb-4">
           오늘 하루 어땠나요? <br />
@@ -30,7 +33,7 @@ export default function MoodsModal({ mood, handleMood }: MoodsModalProps) {
         <div className="w-16 mx-auto">
           <img src={emoji[mood]} alt={mood} />
         </div>
-        <button onClick={closeModal} className="ml-auto block text-brand">
+        <button onClick={closeMoodModal} className="ml-auto block text-brand">
           다음
         </button>
       </div>

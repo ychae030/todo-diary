@@ -7,8 +7,9 @@ import { useCalendarContext } from "../../../context/CalendarContext";
 
 type MoodAndDateProps = {
   mood: Mood;
+  openMoodModal: () => void;
 };
-export default function MoodAndDate({ mood }: MoodAndDateProps) {
+export default function MoodAndDate({ mood, openMoodModal }: MoodAndDateProps) {
   const { selectedDate } = useCalendarContext();
   const { state } = useLocation();
   const date = state || selectedDate;
@@ -16,9 +17,9 @@ export default function MoodAndDate({ mood }: MoodAndDateProps) {
 
   return (
     <div className="grid justify-center items-center text-center">
-      <div className="w-16 mx-auto mb-3">
+      <button className="w-16 mx-auto mb-3" onClick={openMoodModal}>
         <img className="w-full" src={emoji[mood]} alt={mood} />
-      </div>
+      </button>
       <p>{date}</p>
       <p className="text-slate-400">{dayOfWeek}</p>
     </div>
