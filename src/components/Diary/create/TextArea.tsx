@@ -5,11 +5,19 @@ import { MdAccessTime } from "react-icons/md";
 import useInput from "../../../hooks/useInput";
 import { getCurrentTime } from "../../../utils/helpers";
 import useImageUpload from "../../../hooks/useImageUpload";
+import { IoPaperPlane } from "react-icons/io5";
+import useDiary from "../../../hooks/useDiary";
+import { Mood } from "../../../images/emoji";
 
-export default function TextArea() {
+type TextAreaProps = {
+  mood: Mood;
+};
+
+export default function TextArea({ mood }: TextAreaProps) {
   const [isCenter, setIsCenter] = useState(false);
   const { bind, insertRef, insertAtCursor } = useInput<HTMLTextAreaElement>("");
   const { imagePreview, imageHandler } = useImageUpload();
+  const { date } = useDiary();
 
   // 정렬 토글 핸들러
   const handleToggleAlign = useCallback(() => {
@@ -21,12 +29,27 @@ export default function TextArea() {
     insertAtCursor(getCurrentTime());
   }, [insertAtCursor]);
 
+  // submit
+  const hanleSubmit = () => {
+    const data = {
+      date,
+      mood,
+      text: bind.value,
+      isCenter,
+    };
+    console.log(data);
+  };
+
   return (
     <div className="w-full">
       {/* 미리보기 이미지 영역 */}
       {imagePreview && (
-        <div className="min-w-full">
-          <img src={imagePreview} alt="" />
+        <div className="w-1/3  my-3">
+          <img
+            className="rounded-md"
+            src={imagePreview}
+            alt="미리보기 이미지"
+          />
         </div>
       )}
 
@@ -40,7 +63,7 @@ export default function TextArea() {
       />
 
       {/* 버튼 영역 */}
-      <div className="text-xl">
+      <div className="text-2xl text-brand flex">
         {/* 텍스트 정렬 토글 버튼 */}
         <button
           aria-label={`${isCenter ? "왼쪽 정렬하기" : "가운데 정렬하기"}`}
@@ -57,6 +80,11 @@ export default function TextArea() {
         {/* 현재 시간 삽입 버튼 */}
         <button aria-label="현재 시간을 가져옵니다." onClick={handleInsertTime}>
           <MdAccessTime />
+        </button>
+
+        {/* 작성  */}
+        <button className="ml-auto" onClick={hanleSubmit}>
+          <IoPaperPlane />
         </button>
       </div>
     </div>

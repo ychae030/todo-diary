@@ -1,5 +1,10 @@
 import React, { useCallback, useRef, useState } from "react";
 
+export type BindProps<T extends HTMLInputElement | HTMLTextAreaElement> = {
+  value: string;
+  onChange: (e: React.ChangeEvent<T>) => void;
+};
+
 function useInput<
   T extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement
 >(initialValue: string) {

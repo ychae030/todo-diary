@@ -20,8 +20,8 @@ export default function CreateDiary() {
       />
       <CalendarProvider mode="diary">
         <MoodAndDate mood={mood} openMoodModal={openModal} />
+        <TextArea mood={mood} />
       </CalendarProvider>
-      <TextArea />
     </div>
   );
 }
