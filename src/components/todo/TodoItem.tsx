@@ -52,7 +52,7 @@ export default function TodoItem({ item, mode }: TodoItemProps) {
           <strong className="font-normal">{item.text}</strong>
         </label>
       </div>
-      {!mode && (
+      {mode === "future" && (
         <button onClick={openModal}>
           <FaPencil className="text-xs" />
         </button>
