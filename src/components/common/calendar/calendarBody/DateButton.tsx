@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useCalendarContext } from "../../../../context/CalendarContext";
 import { Days } from "../../../../hooks/useCalendar";
 import { emoji } from "../../../../images/emoji";
+import { DiaryItemType } from "../../../diary/create/TextArea";
+import { useQuery } from "react-query";
+import { getDiaries } from "../../../../api/diaryApi";
 
 type DateButtonProps = Pick<Days, "date" | "day" | "isToday"> & {
   isNotCurrentMonth: boolean;
@@ -17,10 +20,17 @@ export default function DateButton({
   isAfterToday,
   isBeforeToday,
 }: DateButtonProps) {
-  const { handleDateClick, disablePastDates, selectedDate, mode, diaryData } =
+  const { handleDateClick, disablePastDates, selectedDate, mode } =
     useCalendarContext();
+
   const disabled = disablePastDates ? isBeforeToday : isAfterToday;
   const navigate = useNavigate();
+
+  const { data: diaryData } = useQuery<DiaryItemType[]>(
+    "diaries",
+    getDiaries,
+    { enabled: mode === "diary" } // diary 모드일 때만 Fetch 실행
+  );
 
   if (mode === "diary") {
     // diaryData에서 date와 일치하는 항목 찾기
