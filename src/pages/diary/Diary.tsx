@@ -7,7 +7,7 @@ export default function Diary() {
   return (
     <div>
       <ListButton />
-      <CalendarProvider mode="diary">
+      <CalendarProvider mode="diary" fetch={true}>
         <Calendar />
       </CalendarProvider>
       <CreateButton feat="diary" />

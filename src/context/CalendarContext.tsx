@@ -18,6 +18,7 @@ type CalendarContextType = {
 type CalendarProviderType = {
   children: React.ReactNode;
   mode: "diary" | "todo";
+  fetch?: boolean;
 };
 
 // Context 생성
@@ -26,13 +27,18 @@ export const CalendarContext = createContext<CalendarContextType | undefined>(
 );
 
 // Provider 컴포넌트 정의
-export const CalendarProvider = ({ children, mode }: CalendarProviderType) => {
+export const CalendarProvider = ({
+  children,
+  mode,
+  fetch = false,
+}: CalendarProviderType) => {
   const { today } = useCalendar();
   const [selectedDate, setSelectedDate] = useState<string>(today);
   const navigate = useNavigate();
 
+  const shouldFetchDiaries = mode === "diary" && fetch; // 특정 상황일때만 쿼리 실행
   const { data: diaryData } = useQuery("diaries", () => getDiaries(), {
-    enabled: mode === "diary", // diary 모드일 때만 쿼리 실행
+    enabled: shouldFetchDiaries,
   });
 
   // 날짜 클릭 핸들러 정의
