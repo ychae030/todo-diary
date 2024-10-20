@@ -69,7 +69,7 @@ const router = createBrowserRouter([
         path: "diary/detail/:date",
         element: (
           <Layout
-            header={{ header: <BackButton /> }}
+            header={{ header: <BackButton isModify /> }}
             content={{ children: <DetailDiary /> }}
           />
         ),

@@ -1,12 +1,25 @@
-import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ModifyButton from "./ModifyButton";
+import { DiaryFetchProvider } from "../../../context/DiaryFetchContext";
 
-export default function BackButton() {
+type BackButtonProps = {
+  isModify?: boolean;
+};
+export default function BackButton({ isModify = false }: BackButtonProps) {
   const navigate = useNavigate();
+  const { date } = useParams();
+
   return (
-    <button onClick={() => navigate(-1)}>
-      <IoIosArrowBack />
-    </button>
+    <>
+      <button className="text-xl" onClick={() => navigate(-1)}>
+        <IoIosArrowBack />
+      </button>
+      {isModify && (
+        <DiaryFetchProvider date={date!}>
+          <ModifyButton />
+        </DiaryFetchProvider>
+      )}
+    </>
   );
 }

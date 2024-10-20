@@ -45,7 +45,7 @@ export default function MainHeader() {
           </nav>
         )}
       </div>
-      <button className="text-brand">Dark</button>
+      <button>Dark</button>
     </>
   );
 }
