@@ -10,6 +10,7 @@ import { IoPaperPlane } from "react-icons/io5";
 import { Mood } from "../../../images/emoji";
 import { addDiary } from "../../../api/diaryApi";
 import useDiary from "../../../hooks/useDiary";
+import { useNavigate } from "react-router-dom";
 
 type TextAreaProps = {
   mood: Mood;
@@ -29,6 +30,7 @@ export default function TextArea({ mood }: TextAreaProps) {
   const { imagePreview, setImagePreview, imageHandler, uploadToServer } =
     useImageUpload();
   const { date } = useDiary();
+  const navigate = useNavigate();
 
   // 정렬 토글 핸들러
   const handleToggleAlign = useCallback(() => {
@@ -51,7 +53,8 @@ export default function TextArea({ mood }: TextAreaProps) {
       isCenter,
       image,
     };
-    addDiary(data);
+    await addDiary(data);
+    navigate("/diary");
   };
 
   return (
