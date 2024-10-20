@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
 import { useCalendar } from "../hooks/useCalendar";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { getDiaries } from "../api/diayApi";
+import { DiaryItemType } from "../components/diary/create/TextArea";
 
 // Context 타입 정의
 type CalendarContextType = {
@@ -8,8 +11,8 @@ type CalendarContextType = {
   setSelectedDate: (date: string) => void;
   handleDateClick: (date: string) => void;
   disablePastDates: boolean;
-  showIcons: boolean;
   mode: "diary" | "todo";
+  diaryData?: DiaryItemType[];
 };
 // Provider 타입 정의
 type CalendarProviderType = {
@@ -28,6 +31,10 @@ export const CalendarProvider = ({ children, mode }: CalendarProviderType) => {
   const [selectedDate, setSelectedDate] = useState<string>(today);
   const navigate = useNavigate();
 
+  const { data: diaryData } = useQuery("diaries", () => getDiaries(), {
+    enabled: mode === "diary", // diary 모드일 때만 쿼리 실행
+  });
+
   // 날짜 클릭 핸들러 정의
   const handleDateClick = (date: string) => {
     setSelectedDate(date);
@@ -43,8 +50,8 @@ export const CalendarProvider = ({ children, mode }: CalendarProviderType) => {
         setSelectedDate,
         handleDateClick,
         disablePastDates: mode === "todo",
-        showIcons: mode === "diary",
         mode: mode,
+        diaryData, // diary 데이터를 Context에 전달
       }}
     >
       {children}
