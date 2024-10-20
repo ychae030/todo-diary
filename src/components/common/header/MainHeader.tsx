@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
 
 type Entry = "TODO" | "DIARY";
 const navList: Entry[] = ["TODO", "DIARY"];
@@ -28,7 +29,13 @@ export default function MainHeader() {
     <>
       <div>
         <h1 className="text-3xl">
-          <button onClick={() => setIsOpen((prev) => !prev)}>{entry}</button>
+          <button
+            className="flex items-center"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            {entry}
+            {isOpen ? <MdArrowDropUp /> : <MdArrowDropDown />}
+          </button>
         </h1>
         {isOpen && (
           <nav className="absolute w-24 py-2 text-center rounded-sm bg-white">
