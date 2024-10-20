@@ -9,7 +9,7 @@ import useImageUpload from "../../../hooks/useImageUpload";
 import { IoPaperPlane } from "react-icons/io5";
 import useDiary from "../../../hooks/useDiary";
 import { Mood } from "../../../images/emoji";
-import { addDiary } from "../../../api/diayApi";
+import { addDiary } from "../../../api/diaryApi";
 
 type TextAreaProps = {
   mood: Mood;

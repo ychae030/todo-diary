@@ -24,9 +24,11 @@ export default function CalendarBody({
             const isAfterToday = isAfter(date, today); // 오늘 보다 뒤의 날짜
             const isBeforeToday = isBefore(date, today);
             return (
-              <td className={isNotCurrentMonth ? "opacity-0" : "py-2"}>
+              <td
+                key={date}
+                className={isNotCurrentMonth ? "opacity-0" : "py-2"}
+              >
                 <DateButton
-                  key={date}
                   date={date}
                   day={day}
                   isToday={isToday}

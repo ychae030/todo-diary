@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import { useCalendar } from "../hooks/useCalendar";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { getDiaries } from "../api/diayApi";
+import { getDiaries } from "../api/diaryApi";
 import { DiaryItemType } from "../components/diary/create/TextArea";
 
 // Context 타입 정의
