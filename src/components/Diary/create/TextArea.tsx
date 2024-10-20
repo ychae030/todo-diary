@@ -7,9 +7,9 @@ import useInput from "../../../hooks/useInput";
 import { getCurrentTime } from "../../../utils/helpers";
 import useImageUpload from "../../../hooks/useImageUpload";
 import { IoPaperPlane } from "react-icons/io5";
-import useDiary from "../../../hooks/useDiary";
 import { Mood } from "../../../images/emoji";
 import { addDiary } from "../../../api/diaryApi";
+import useDiary from "../../../hooks/useDiary";
 
 type TextAreaProps = {
   mood: Mood;

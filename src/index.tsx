@@ -12,6 +12,7 @@ import BackButton from "./components/common/header/BackButton";
 import PendingTask from "./pages/todo/PendingTask";
 import Diary from "./pages/diary/Diary";
 import CreateDiary from "./pages/diary/CreateDiary";
+import DetailDiary from "./pages/diary/DetailDiary";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,15 @@ const router = createBrowserRouter([
           <Layout
             header={{ header: <BackButton /> }}
             content={{ children: <CreateDiary /> }}
+          />
+        ),
+      },
+      {
+        path: "diary/detail/:date",
+        element: (
+          <Layout
+            header={{ header: <BackButton /> }}
+            content={{ children: <DetailDiary /> }}
           />
         ),
       },

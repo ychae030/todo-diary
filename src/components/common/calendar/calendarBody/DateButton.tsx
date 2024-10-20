@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useCalendarContext } from "../../../../context/CalendarContext";
 import { Days } from "../../../../hooks/useCalendar";
 import { emoji } from "../../../../images/emoji";
@@ -19,6 +20,7 @@ export default function DateButton({
   const { handleDateClick, disablePastDates, selectedDate, mode, diaryData } =
     useCalendarContext();
   const disabled = disablePastDates ? isBeforeToday : isAfterToday;
+  const navigate = useNavigate();
 
   if (mode === "diary") {
     // diaryData에서 date와 일치하는 항목 찾기
@@ -33,6 +35,7 @@ export default function DateButton({
             selectedDate === date && !matchedDiary ? "activeNum" : "inactiveNum"
           }
           disabled={disabled || isNotCurrentMonth}
+          onClick={() => navigate(`/diary/detail/${date}`)}
         >
           <img src={emoji[matchedDiary.mood]} alt="" />
         </button>
