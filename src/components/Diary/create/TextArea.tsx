@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import React, { useCallback, useState } from "react";
 import { PiTextAlignCenterBold, PiTextAlignLeftBold } from "react-icons/pi";
 import { HiOutlinePhotograph } from "react-icons/hi";
@@ -8,15 +9,25 @@ import useImageUpload from "../../../hooks/useImageUpload";
 import { IoPaperPlane } from "react-icons/io5";
 import useDiary from "../../../hooks/useDiary";
 import { Mood } from "../../../images/emoji";
+import { addDiary } from "../../../api/diayApi";
 
 type TextAreaProps = {
   mood: Mood;
+};
+export type DiaryItemType = {
+  id: string;
+  date: string;
+  mood: Mood;
+  text: string;
+  isCenter: boolean;
+  image?: string;
 };
 
 export default function TextArea({ mood }: TextAreaProps) {
   const [isCenter, setIsCenter] = useState(false);
   const { bind, insertRef, insertAtCursor } = useInput<HTMLTextAreaElement>("");
-  const { imagePreview, imageHandler } = useImageUpload();
+  const { imagePreview, setImagePreview, imageHandler, uploadToServer } =
+    useImageUpload();
   const { date } = useDiary();
 
   // 정렬 토글 핸들러
@@ -30,14 +41,17 @@ export default function TextArea({ mood }: TextAreaProps) {
   }, [insertAtCursor]);
 
   // submit
-  const hanleSubmit = () => {
+  const hanleSubmit = async () => {
+    const image = imagePreview ? await uploadToServer() : "";
     const data = {
+      id: uuidv4(),
       date,
       mood,
       text: bind.value,
       isCenter,
+      image,
     };
-    console.log(data);
+    addDiary(data);
   };
 
   return (
@@ -45,6 +59,7 @@ export default function TextArea({ mood }: TextAreaProps) {
       {/* 미리보기 이미지 영역 */}
       {imagePreview && (
         <div className="w-1/3  my-3">
+          <button onClick={() => setImagePreview(null)}>삭제</button>
           <img
             className="rounded-md"
             src={imagePreview}

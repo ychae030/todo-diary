@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function useImageUpload() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -24,9 +24,20 @@ export default function useImageUpload() {
         reader.readAsDataURL(file);
       }
     });
-
-    // cloudinary 업로드
-    const uploadToServer = () => {};
   };
-  return { imageHandler, imagePreview };
+
+  // cloudinary 업로드
+  const uploadToServer = () => {
+    const url = process.env.REACT_APP_CLOUDINARY_URL || "";
+    const data = new FormData();
+    selectedFile && data.append("file", selectedFile);
+    data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET || "");
+    return fetch(url, {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => data.url);
+  };
+  return { imageHandler, imagePreview, setImagePreview, uploadToServer };
 }
