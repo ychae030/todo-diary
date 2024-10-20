@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mood } from "../../images/emoji";
 import MoodsModal from "../../components/diary/create/MoodsModal";
-import MoodAndDate from "../../components/diary/create/MoodAndDate";
+import MoodAndDate from "../../components/diary/common/MoodAndDate";
 import { CalendarProvider } from "../../context/CalendarContext";
 import useModal from "../../hooks/useModal";
 import TextArea from "../../components/diary/create/TextArea";

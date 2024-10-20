@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getDiary } from "../../api/diaryApi";
-import MoodAndDate from "../../components/diary/create/MoodAndDate";
+import MoodAndDate from "../../components/diary/common/MoodAndDate";
 import { CalendarProvider } from "../../context/CalendarContext";
 
 export default function DetailDiary() {
