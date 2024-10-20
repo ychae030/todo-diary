@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { useQuery } from "react-query";
-import { getDiaries, getDiary } from "../api/diaryApi";
+import { getDiary } from "../api/diaryApi";
 import { DiaryItemType } from "../components/diary/create/TextArea";
 
 // FetchContext 타입 정의
