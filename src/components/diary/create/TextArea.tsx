@@ -45,7 +45,7 @@ export default function TextArea({
 
   useEffect(() => {
     image && setImagePreview(image);
-  }, [image]);
+  }, [image, setImagePreview]);
 
   // 정렬 토글 핸들러
   const handleToggleAlign = useCallback(() => {
