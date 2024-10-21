@@ -11,7 +11,7 @@ export default function DetailDiaryLayout() {
   return (
     <div>
       <CalendarProvider mode="diary">
-        <MoodAndDate mood={mood!} mode="read" readModeDate={date} />
+        <MoodAndDate mood={mood!} mode="read" Diarydate={date} />
       </CalendarProvider>
       {image && (
         <div className="w-1/3  my-3">

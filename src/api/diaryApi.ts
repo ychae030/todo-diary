@@ -1,4 +1,11 @@
-import { deleteDoc, getDocs, query, setDoc, where } from "firebase/firestore";
+import {
+  deleteDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { DiaryItemType } from "../components/diary/create/TextArea";
 import { getCollectionRef, getDocRef } from "./firebase";
 
@@ -22,6 +29,19 @@ export const addDiary = async (diayItem: DiaryItemType) => {
     await setDoc(diayItemsDocRef, diayItem);
   } catch (error) {
     console.error("Failed to add document:", error);
+  }
+};
+
+// updeateDiary
+export const updateDiary = async (
+  diaryId: string,
+  updatedData: Partial<DiaryItemType>
+) => {
+  try {
+    await updateDoc(getDocRef("diaries", diaryId), updatedData);
+    console.log("Document updated successfully for ID:", diaryId);
+  } catch (error) {
+    console.error("Failed to update document for ID:", diaryId, error);
   }
 };
 

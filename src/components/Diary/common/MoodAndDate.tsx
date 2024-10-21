@@ -6,17 +6,17 @@ import useDiary from "../../../hooks/useDiary";
 type MoodAndDateProps = {
   mood: Mood;
   openMoodModal?: () => void;
-  mode?: "create" | "read";
-  readModeDate?: string;
+  mode?: "create" | "read" | "edit";
+  Diarydate?: string;
 };
 export default function MoodAndDate({
   mood,
   openMoodModal,
   mode = "create",
-  readModeDate,
+  Diarydate,
 }: MoodAndDateProps) {
   const { date: createModeDate } = useDiary();
-  const date = mode === "create" ? createModeDate : readModeDate;
+  const date = mode === "create" ? createModeDate : Diarydate;
   const dayOfWeek = format(date, "EEEE", { locale: ko });
 
   return (

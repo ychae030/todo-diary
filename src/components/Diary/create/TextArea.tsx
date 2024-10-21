@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PiTextAlignCenterBold, PiTextAlignLeftBold } from "react-icons/pi";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { MdAccessTime } from "react-icons/md";
@@ -8,12 +8,16 @@ import { getCurrentTime } from "../../../utils/helpers";
 import useImageUpload from "../../../hooks/useImageUpload";
 import { IoPaperPlane } from "react-icons/io5";
 import { Mood } from "../../../images/emoji";
-import { addDiary } from "../../../api/diaryApi";
+import { addDiary, updateDiary } from "../../../api/diaryApi";
 import useDiary from "../../../hooks/useDiary";
 import { useNavigate } from "react-router-dom";
 
 type TextAreaProps = {
   mood: Mood;
+  mode?: "create" | "edit";
+  image?: string;
+  text?: string;
+  id?: string;
 };
 export type DiaryItemType = {
   id: string;
@@ -24,13 +28,24 @@ export type DiaryItemType = {
   image?: string;
 };
 
-export default function TextArea({ mood }: TextAreaProps) {
+export default function TextArea({
+  mood,
+  mode = "create",
+  text = "",
+  image = "",
+  id,
+}: TextAreaProps) {
   const [isCenter, setIsCenter] = useState(false);
-  const { bind, insertRef, insertAtCursor } = useInput<HTMLTextAreaElement>("");
+  const { bind, insertRef, insertAtCursor } =
+    useInput<HTMLTextAreaElement>(text);
   const { imagePreview, setImagePreview, imageHandler, uploadToServer } =
     useImageUpload();
   const { date } = useDiary();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    image && setImagePreview(image);
+  }, [image]);
 
   // 정렬 토글 핸들러
   const handleToggleAlign = useCallback(() => {
@@ -44,16 +59,33 @@ export default function TextArea({ mood }: TextAreaProps) {
 
   // submit
   const hanleSubmit = async () => {
-    const image = imagePreview ? await uploadToServer() : "";
-    const data = {
-      id: uuidv4(),
-      date,
-      mood,
-      text: bind.value,
-      isCenter,
-      image,
-    };
-    await addDiary(data);
+    if (mode === "edit") {
+      const updatedImg =
+        image === imagePreview
+          ? image
+          : !imagePreview
+          ? ""
+          : await uploadToServer();
+      const updatedData = {
+        mood,
+        text: bind.value,
+        isCenter,
+        image: updatedImg,
+      };
+      await updateDiary(id as string, updatedData);
+    } else {
+      const image = imagePreview ? await uploadToServer() : "";
+      const data = {
+        id: uuidv4(),
+        date,
+        mood,
+        text: bind.value,
+        isCenter,
+        image,
+      };
+      await addDiary(data);
+    }
+
     navigate("/diary");
   };
 

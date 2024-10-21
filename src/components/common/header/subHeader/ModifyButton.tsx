@@ -9,9 +9,12 @@ import { useNavigate } from "react-router-dom";
 export default function ModifyButton() {
   const { isOpen, openModal, closeModal } = useModal();
   const { diaryData } = useDiaryFetchContext();
-  const { id } = diaryData?.[0] || {};
+  const { id, date } = diaryData?.[0] || {};
   const navigate = useNavigate();
 
+  const handleEdit = () => {
+    date && navigate(`/diary/edit/${date}`, { state: diaryData?.[0] });
+  };
   const handleDelete = () => {
     id && deleteDiary(id);
     navigate("/diary");
@@ -23,7 +26,12 @@ export default function ModifyButton() {
       </button>
       <Modal isOpen={isOpen} closeModal={closeModal}>
         <div className="grid">
-          <button className="pb-4 border-b border-slate-200">수정</button>
+          <button
+            onClick={handleEdit}
+            className="pb-4 border-b border-slate-200"
+          >
+            수정
+          </button>
           <button onClick={handleDelete} className="pt-4">
             삭제
           </button>
