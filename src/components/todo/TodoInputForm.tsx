@@ -47,20 +47,22 @@ export default function TodoInputForm({
     status: "active" as Status,
     createdAt: new Date().toISOString(),
   });
-  const handleForm = () => {
+  const handleForm = async () => {
     const text = bind.value;
     const item = createTodoItems(text);
 
     if (mode === "update" && editItem) {
-      updateTodo(editItem.id, { text: bind.value, date: selectedDate });
+      await updateTodo(editItem.id, { text: bind.value, date: selectedDate });
     } else {
-      addTodo(item, selectedDate);
+      await addTodo(item, selectedDate);
     }
     invalidateTodos();
     closeForm();
   };
-  const handleDelete = () => {
-    editItem && deleteTodo(editItem.id);
+  const handleDelete = async () => {
+    if (editItem) {
+      await deleteTodo(editItem.id); // 비동기 삭제 완료 대기
+    }
     invalidateTodos();
     closeForm();
   };
