@@ -75,13 +75,13 @@ export default function TextArea({ mood }: TextAreaProps) {
       <textarea
         {...bind}
         ref={insertRef}
-        className={`w-full p-2 min-h-60 resize-none border border-slate-300 ${
+        className={`w-full p-2 min-h-60 resize-none border border-slate-300 dark:bg-slate-600 dark:border-slate-800 ${
           isCenter ? "text-center" : "text-left"
         }`}
       />
 
       {/* 버튼 영역 */}
-      <div className="text-2xl text-brand flex">
+      <div className="text-2xl text-brand flex dark:text-brandDark">
         {/* 텍스트 정렬 토글 버튼 */}
         <button
           aria-label={`${isCenter ? "왼쪽 정렬하기" : "가운데 정렬하기"}`}

@@ -33,7 +33,10 @@ export default function MoodsModal({
         <div className="w-16 mx-auto">
           <img src={emoji[mood]} alt={mood} />
         </div>
-        <button onClick={closeMoodModal} className="ml-auto block text-brand">
+        <button
+          onClick={closeMoodModal}
+          className="ml-auto block text-brand dark:text-brandDark"
+        >
           다음
         </button>
       </div>

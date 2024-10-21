@@ -1,9 +1,9 @@
 import React from "react";
 import { IoMdMore } from "react-icons/io";
-import Modal from "../Layouts/Modal";
-import useModal from "../../../hooks/useModal";
-import { useDiaryFetchContext } from "../../../context/DiaryFetchContext";
-import { deleteDiary } from "../../../api/diaryApi";
+import Modal from "../../Layouts/Modal";
+import useModal from "../../../../hooks/useModal";
+import { useDiaryFetchContext } from "../../../../context/DiaryFetchContext";
+import { deleteDiary } from "../../../../api/diaryApi";
 import { useNavigate } from "react-router-dom";
 
 export default function ModifyButton() {

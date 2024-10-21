@@ -1,7 +1,7 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import ModifyButton from "./ModifyButton";
-import { DiaryFetchProvider } from "../../../context/DiaryFetchContext";
+import { DiaryFetchProvider } from "../../../../context/DiaryFetchContext";
 
 type BackButtonProps = {
   isModify?: boolean;

@@ -77,10 +77,10 @@ export default function TodoInputForm({
       )}
       <input
         {...bind}
-        className="w-full border-b outline-none  border-brand"
+        className="w-full border-b outline-none  border-brand dark:bg-slate-600 dark:border-brandDark"
         type="text"
       />
-      <div className="flex mt-3 items-center justify-between text-brand">
+      <div className="flex mt-3 items-center justify-between text-brand dark:text-brandDark">
         <button onClick={openModal} className="flex items-center gap-2">
           <FaRegCalendarAlt />
           <span>{date}</span>

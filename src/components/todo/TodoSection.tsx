@@ -21,7 +21,11 @@ export default function TodoSection({ data, mode }: TodoSectionProps) {
         lastDate = item.date;
         return (
           <div key={item.id}>
-            {showDate && <h3 className="mb-2 text-brand">{item.date}</h3>}
+            {showDate && (
+              <h3 className="mb-2 mt-3 text-brand dark:text-brandDark">
+                {item.date}
+              </h3>
+            )}
             <TodoItem item={item} mode={mode} />
           </div>
         );

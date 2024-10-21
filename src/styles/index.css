@@ -7,18 +7,17 @@
 
 @layer base {
   body {
-    @apply text-slate-600;
-  }
-  body {
-    @apply font-LeeSeoyun max-w-3xl w-11/12 mx-auto bg-background;
+    @apply text-slate-600 font-LeeSeoyun max-w-3xl w-11/12 mx-auto bg-background dark:bg-slate-800 dark:text-slate-200;
   }
   h1,
   nav {
     @apply font-LOTTERIACHAB;
   }
-  h1,
-  nav li.active {
+  h1 {
     @apply text-brand dark:text-brandDark;
+  }
+  nav li.active {
+    @apply dark:text-slate-800;
   }
 
   /* calendar date, months style */
@@ -27,10 +26,10 @@
     @apply w-8 py-1;
   }
   .activeNum {
-    @apply bg-blue-100 rounded-full;
+    @apply bg-blue-100 rounded-full dark:text-slate-800;
   }
   button:disabled {
-    @apply text-slate-300;
+    @apply text-slate-300 dark:text-slate-600;
   }
 }
 
@@ -42,12 +41,12 @@
   .modal {
     width: 80%;
     max-width: 350px;
-    background-color: #fff;
     padding: 1.2rem 1rem 1rem 1rem;
     border-radius: 1rem;
+    @apply bg-white dark:bg-slate-500 dark:text-slate-800;
   }
   .modalBottom {
-    @apply fixed bottom-0 left-0 pt-5 pb-3 w-full bg-white rounded-t-2xl;
+    @apply fixed bottom-0 left-0 pt-5 pb-3 w-full bg-white rounded-t-2xl dark:bg-slate-600;
   }
 
   /* Calendar Today Button */
