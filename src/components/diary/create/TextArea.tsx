@@ -86,7 +86,7 @@ export default function TextArea({
       await addDiary(data);
     }
 
-    navigate("/diary");
+    navigate(-1);
   };
 
   return (

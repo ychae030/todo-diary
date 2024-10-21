@@ -17,7 +17,7 @@ export default function ModifyButton() {
   };
   const handleDelete = () => {
     id && deleteDiary(id);
-    navigate("/diary");
+    navigate(-1);
   };
   return (
     <div className="ml-auto">
