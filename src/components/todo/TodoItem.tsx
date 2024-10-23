@@ -13,11 +13,16 @@ export type TodoItemType = {
   createdAt?: string;
   date?: string;
 };
-type TodoItemProps = {
+export type TodoItemProps = {
   item: TodoItemType;
   mode?: "pending" | "future";
+  setDraggingItem?: (item: TodoItemType | null) => void; // 드래그 중인 아이템 설정 함수
 };
-export default function TodoItem({ item, mode }: TodoItemProps) {
+export default function TodoItem({
+  item,
+  mode,
+  setDraggingItem,
+}: TodoItemProps) {
   const [isChecked, setIsChecked] = useState<boolean>(
     item.status === "completed"
   );
@@ -43,8 +48,20 @@ export default function TodoItem({ item, mode }: TodoItemProps) {
     mutation.mutate(newStatus);
   };
 
+  const handleDrag = (event: "start" | "end") => {
+    if (mode === "pending" && setDraggingItem) {
+      event === "start" && setDraggingItem(item);
+      event === "end" && setDraggingItem(null);
+    }
+  };
+
   return (
-    <div className="flex items-center justify-between">
+    <div
+      draggable={mode === "pending"}
+      onDragStart={() => handleDrag("start")}
+      onDragEnd={() => handleDrag("end")}
+      className="flex items-center justify-between"
+    >
       <div>
         <input
           type="checkbox"

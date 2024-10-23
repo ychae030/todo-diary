@@ -1,18 +1,13 @@
-import TodoItem from "./TodoItem";
+import TodoItem, { TodoItemProps, TodoItemType } from "./TodoItem";
 
-type Status = "active" | "completed";
-type TodoItemType = {
-  id: string;
-  text: string;
-  status: Status;
-  createdAt?: string;
-  date?: string;
-};
-type TodoSectionProps = {
+type TodoSectionProps = Omit<TodoItemProps, "item"> & {
   data?: TodoItemType[];
-  mode?: "pending" | "future";
 };
-export default function TodoSection({ data, mode }: TodoSectionProps) {
+export default function TodoSection({
+  data,
+  mode,
+  setDraggingItem,
+}: TodoSectionProps) {
   let lastDate: string | undefined = "";
   return (
     <section>
@@ -26,7 +21,11 @@ export default function TodoSection({ data, mode }: TodoSectionProps) {
                 {item.date}
               </h3>
             )}
-            <TodoItem item={item} mode={mode} />
+            <TodoItem
+              item={item}
+              mode={mode}
+              setDraggingItem={setDraggingItem}
+            />
           </div>
         );
       })}
