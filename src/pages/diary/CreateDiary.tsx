@@ -8,7 +8,7 @@ import TextArea from "../../components/diary/create/TextArea";
 
 export default function CreateDiary() {
   const [mood, setMood] = useState<Mood>("happy");
-  const { isOpen, closeModal, openModal } = useModal();
+  const { isOpen, closeModal, openModal } = useModal(true);
 
   return (
     <div>
