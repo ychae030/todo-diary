@@ -5,7 +5,6 @@ import { CalendarProvider } from "../../context/CalendarContext";
 export default function Diary() {
   return (
     <div>
-      <ListButton />
       <CalendarProvider mode="diary">
         <Calendar />
       </CalendarProvider>
